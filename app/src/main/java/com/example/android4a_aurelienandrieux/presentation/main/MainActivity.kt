@@ -40,11 +40,37 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.loginLiveData.observe(this, Observer{
             when(it){
-                is LoginSuccess -> TODO()
+                is LoginSuccess -> {
+                    MaterialAlertDialogBuilder(this)
+                        .setTitle("Success")
+                        .setMessage("Connected to your account")
+                        .setPositiveButton("Ok") { dialog, which ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                }
+                is CreateAccountSuccess -> {
+                    MaterialAlertDialogBuilder(this)
+                        .setTitle("Success")
+                        .setMessage("Account created")
+                        .setPositiveButton("Ok") { dialog, which ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                }
                 LoginError -> {
                     MaterialAlertDialogBuilder(this)
-                        .setTitle("Erreur")
-                        .setMessage("Compte Inconnu")
+                        .setTitle("Error")
+                        .setMessage("Username and password don't match")
+                        .setPositiveButton("Ok") { dialog, which ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                }
+                CreateAccountError -> {
+                    MaterialAlertDialogBuilder(this)
+                        .setTitle("Error")
+                        .setMessage("Username already used")
                         .setPositiveButton("Ok") { dialog, which ->
                             dialog.dismiss()
                         }
@@ -54,6 +80,10 @@ class MainActivity : AppCompatActivity() {
         })
         login_button.setOnClickListener{
             mainViewModel.onClickedLogin(login_edit.text.toString().trim(), password_edit.text.toString())
+        }
+
+        create_account_button.setOnClickListener{
+            mainViewModel.onClickedCreateAccount(login_edit.text.toString().trim(), password_edit.text.toString())
         }
     }
 }
