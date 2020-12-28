@@ -4,4 +4,6 @@
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="createAccount">Create Account</string>
+    <string name="BASE_URL">https://raw.githubusercontent.com/Beuhlex/project_MobileProg_AA/master/</string>
+    <string name="KEY_LOZGAMES_LIST">jsonZeldaGamesList</string>
 </resources>
