@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android4a_aurelienandrieux.R
+import com.example.android4a_aurelienandrieux.data.local.models.ZeldaGames
 
 class ListAdapter // Provide a suitable constructor (depends on the kind of dataset)
-(private val values: List<String>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+(private val values: List<ZeldaGames>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -39,7 +40,7 @@ class ListAdapter // Provide a suitable constructor (depends on the kind of data
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        val name = values[position]
+        val name = values[position].Name
         holder.txtHeader.text = name
         holder.txtFooter.text = "Footer: $name"
     }
