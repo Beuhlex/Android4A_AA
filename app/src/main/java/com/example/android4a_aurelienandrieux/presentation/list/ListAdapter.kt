@@ -3,10 +3,13 @@ package com.example.android4a_aurelienandrieux.presentation.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android4a_aurelienandrieux.R
 import com.example.android4a_aurelienandrieux.data.local.models.ZeldaGames
+import com.squareup.picasso.Picasso
+
 
 class ListAdapter // Provide a suitable constructor (depends on the kind of dataset)
 (private val values: List<ZeldaGames>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
@@ -18,6 +21,7 @@ class ListAdapter // Provide a suitable constructor (depends on the kind of data
         // each data item is just a string in this case
         var txtHeader: TextView
         var txtFooter: TextView
+        val gameIcon: ImageView = itemView.findViewById(R.id.icon)
 
         init {
             txtHeader = layout.findViewById<View>(R.id.firstLine) as TextView
@@ -41,8 +45,10 @@ class ListAdapter // Provide a suitable constructor (depends on the kind of data
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         val name = values[position].Name
-        holder.txtHeader.text = name
-        holder.txtFooter.text = "Footer: $name"
+        val releaseYear = values[position].Release_year_in_Europe
+        holder.txtHeader.text = values[position].Name
+        holder.txtFooter.text = "Release year: $releaseYear"
+        Picasso.get().load(values[position].img_Cover_URL).resize(100,100).into(holder.gameIcon)
     }
 
     // Return the size of your dataset (invoked by the layout manager)
