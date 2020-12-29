@@ -1,6 +1,5 @@
 package com.example.android4a_aurelienandrieux.presentation.list
 
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android4a_aurelienandrieux.data.local.models.RestZeldaGamesResponse
@@ -19,7 +18,7 @@ class ListViewModel(
 
 ): ViewModel(){
 
-    val loginLiveData : MutableLiveData<getApiStatus> = MutableLiveData()
+    val apiLiveData : MutableLiveData<getApiStatus> = MutableLiveData()
 
     fun makeApiCall(){
         val gson = GsonBuilder()
@@ -38,14 +37,14 @@ class ListViewModel(
             override fun onResponse(call: Call<RestZeldaGamesResponse?>, response: Response<RestZeldaGamesResponse?>) {
                 if (response.isSuccessful && response.body() != null) {
                     val zeldaGamesList: List<ZeldaGames> = response.body()!!.results!!
-                    loginLiveData.value = getApiSuccess(zeldaGamesList)
+                    apiLiveData.value = getApiSuccess(zeldaGamesList)
                 } else {
-                    loginLiveData.value = getApiFailure
+                    apiLiveData.value = getApiFailure
                 }
             }
 
             override fun onFailure(call: Call<RestZeldaGamesResponse?>, t: Throwable) {
-                loginLiveData.value = getApiError
+                apiLiveData.value = getApiError
             }
         })
     }

@@ -5,7 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.android4a_aurelienandrieux.data.local.models.UserLocal
-import com.example.android4a_aurelienandrieux.domain.entity.User
 
 @Dao
 interface DatabaseDao {

@@ -1,5 +1,6 @@
 package com.example.android4a_aurelienandrieux.presentation.main
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -34,12 +35,17 @@ class MainViewModel(
     fun onClickedCreateAccount(username: String, password: String){
         viewModelScope.launch(Dispatchers.IO) {
             val user = getUserUseCase.invoke(username, password)
-            val createAccountStatus = if(user != null){
+            val test = "abort"
+            val createAccountStatus = if(username == ""){
+                CreateAccountNullUsername
+            }else if(password == ""){
+                CreateAccountNullPassword
+            }else if(user != null){
                 CreateAccountError
             } else {
                 CreateAccountSuccess(username)
             }
-            if(createAccountStatus != CreateAccountError){
+            if(createAccountStatus == CreateAccountSuccess(username)){
                 createUserUseCase.invoke(User(username, password))
             }
             withContext(Dispatchers.Main) {

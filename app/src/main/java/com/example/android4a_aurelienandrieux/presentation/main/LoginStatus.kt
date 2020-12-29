@@ -9,3 +9,7 @@ object LoginError : LoginStatus()
 data class CreateAccountSuccess(val username: String) : LoginStatus()
 
 object CreateAccountError : LoginStatus()
+
+object CreateAccountNullUsername: LoginStatus()
+
+object CreateAccountNullPassword: LoginStatus()

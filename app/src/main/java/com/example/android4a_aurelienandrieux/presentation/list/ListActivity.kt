@@ -21,7 +21,7 @@ class ListActivity : AppCompatActivity() {
 
         listViewModel.makeApiCall()
 
-        listViewModel.loginLiveData.observe(this, Observer {
+        listViewModel.apiLiveData.observe(this, Observer {
             when(it){
                 is getApiSuccess -> showList(it.lozGamesList)
                 getApiFailure -> Toast.makeText(this@ListActivity, "Failure", Toast.LENGTH_SHORT).show()
